@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5035BD3C2A7EA15700CECF9E /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 5035BD3B2A7EA15700CECF9E /* Sparkle */; };
 		F40063771F05B3C30019C0FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40063761F05B3C30019C0FE /* AppDelegate.swift */; };
 		F40063791F05B3C30019C0FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40063781F05B3C30019C0FE /* ViewController.swift */; };
 		F400637B1F05B3C30019C0FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F400637A1F05B3C30019C0FE /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5035BD3C2A7EA15700CECF9E /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +79,7 @@
 			buildConfigurationList = F40063821F05B3C30019C0FE /* Build configuration list for PBXNativeTarget "AppIcons" */;
 			buildPhases = (
 				F400636F1F05B3C30019C0FE /* Sources */,
+				5035BD3E2A7EA64C00CECF9E /* ShellScript */,
 				F40063701F05B3C30019C0FE /* Frameworks */,
 				F40063711F05B3C30019C0FE /* Resources */,
 			);
@@ -85,6 +88,9 @@
 			dependencies = (
 			);
 			name = AppIcons;
+			packageProductDependencies = (
+				5035BD3B2A7EA15700CECF9E /* Sparkle */,
+			);
 			productName = AppIcons;
 			productReference = F40063731F05B3C30019C0FE /* AppIcons.app */;
 			productType = "com.apple.product-type.application";
@@ -102,7 +108,7 @@
 					F40063721F05B3C30019C0FE = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W7PMV9XFGM;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -116,6 +122,9 @@
 				Base,
 			);
 			mainGroup = F400636A1F05B3C30019C0FE;
+			packageReferences = (
+				5035BD3A2A7EA15700CECF9E /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			productRefGroup = F40063741F05B3C30019C0FE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +147,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5035BD3E2A7EA64C00CECF9E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\nif [ -n \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" ]\nthen\n# Type a script or drag a script file from your workspace to insert its path.\n\n    DERIVED_DIR=\"${BUILD_DIR%Build/*}\"\n\n    SPARKLE_PATH=\"${DERIVED_DIR}/SourcePackages/artifacts/Sparkle/Sparkle.xcframework/macos-arm64_x86_64/Sparkle.framework\"\n\n    echo \"==> ${SPARKLE_PATH}\"\n        \n    codesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/AutoUpdate\"\n \n    codesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/XPCServices/Installer.xpc\"\n \n codesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/XPCServices/Downloader.xpc\"\n \n codesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/Updater.app\"\n \n    codesign --verbose --force --deep --timestamp -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$SPARKLE_PATH/Versions/Current/Sparkle\"\n \n   \n fi\n    \n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F400636F1F05B3C30019C0FE /* Sources */ = {
@@ -251,7 +280,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -266,7 +296,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AppIcons/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
 				PRODUCT_BUNDLE_IDENTIFIER = Armonia.AppIcons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -285,7 +318,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = AppIcons/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
 				PRODUCT_BUNDLE_IDENTIFIER = Armonia.AppIcons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -315,6 +351,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5035BD3A2A7EA15700CECF9E /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5035BD3B2A7EA15700CECF9E /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5035BD3A2A7EA15700CECF9E /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F400636B1F05B3C30019C0FE /* Project object */;
 }

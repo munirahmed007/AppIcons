@@ -7,12 +7,18 @@
 //
 
 import Cocoa
+import Sparkle
+
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    var spuupdater: SPUStandardUpdaterController!
+    var path: String!
+   
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        spuupdater = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -22,5 +28,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
+}
 
+extension AppDelegate: SPUUpdaterDelegate {
+    func updater(_ updater: SPUUpdater, willInstallUpdateOnQuit item: SUAppcastItem, immediateInstallationBlock immediateInstallHandler: @escaping () -> Void) -> Bool {
+        immediateInstallHandler()
+        return true
+    }
+    
+    func feedURLString(for updater: SPUUpdater) -> String? {
+        return self.path!
+    }
 }
