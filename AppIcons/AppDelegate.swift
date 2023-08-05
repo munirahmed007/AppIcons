@@ -16,8 +16,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var spuupdater: SPUStandardUpdaterController!
     var path: String!
    
+    func intialization() {
+       // if path == nil {
+            var psn = ProcessSerialNumber(highLongOfPSN: 0, lowLongOfPSN: UInt32(kCurrentProcess) )
+            TransformProcessType(&psn, ProcessApplicationTransformState(kProcessTransformToForegroundApplication))
+        //}
+    }
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        intialization()
         spuupdater = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
     }
 
