@@ -14,17 +14,23 @@ import Sparkle
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var spuupdater: SPUStandardUpdaterController!
-    var path: String!
+    var path: String?
    
     func intialization() {
-       // if path == nil {
+        path = ProcessInfo.processInfo.environment["APPCAST_ENDPOINT"]
+        if path == nil {
             var psn = ProcessSerialNumber(highLongOfPSN: 0, lowLongOfPSN: UInt32(kCurrentProcess) )
             TransformProcessType(&psn, ProcessApplicationTransformState(kProcessTransformToForegroundApplication))
-        //}
+        } else {
+            spuupdater = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
+            DispatchQueue.main.async(execute: {
+                self.spuupdater.startUpdater()
+                self.spuupdater.checkForUpdates(self)
+            })
+        }
     }
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         intialization()
-        spuupdater = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -43,6 +49,6 @@ extension AppDelegate: SPUUpdaterDelegate {
     }
     
     func feedURLString(for updater: SPUUpdater) -> String? {
-        return self.path!
+        return self.path ?? ""
     }
 }
