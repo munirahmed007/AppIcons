@@ -56,8 +56,10 @@ class UpdateLauncher {
                         do {
                             try FileManager.default.removeItem(at: mainBundleURL)
                             try FileManager.default.moveItem(at: extractionDirectory.appendingPathComponent(mainBundleURL.lastPathComponent), to: mainBundleURL)
-                            NSWorkspace.shared.open(mainBundleURL)
-                            NSApp.terminate(self)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                NSWorkspace.shared.open(mainBundleURL)
+                                NSApp.terminate(self)
+                            }
                             print("Bundle replaced successfully.")
                         } catch {
                             print("Error replacing bundle: \(error)")
