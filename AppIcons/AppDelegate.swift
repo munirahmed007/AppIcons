@@ -13,7 +13,7 @@ import Sparkle
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    var spuupdater: SPUStandardUpdaterController!
+    var spuupdater: SUUpdater!
     var path: String?
    
     func intialization() {
@@ -22,10 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             var psn = ProcessSerialNumber(highLongOfPSN: 0, lowLongOfPSN: UInt32(kCurrentProcess) )
             TransformProcessType(&psn, ProcessApplicationTransformState(kProcessTransformToForegroundApplication))
         } else {
-            spuupdater = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
+            self.spuupdater = SUUpdater(for: Bundle.main)!
             DispatchQueue.main.async(execute: {
-                self.spuupdater.startUpdater()
-                self.spuupdater.checkForUpdates(self)
+                self.spuupdater.delegate = self
+                self.spuupdater.checkForUpdatesInBackground()
             })
         }
     }
@@ -42,13 +42,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-extension AppDelegate: SPUUpdaterDelegate {
-    func updater(_ updater: SPUUpdater, willInstallUpdateOnQuit item: SUAppcastItem, immediateInstallationBlock immediateInstallHandler: @escaping () -> Void) -> Bool {
+extension AppDelegate: SUUpdaterDelegate {
+    func updater(_ updater: SUUpdater, willInstallUpdateOnQuit item: SUAppcastItem, immediateInstallationBlock immediateInstallHandler: @escaping () -> Void) {
         immediateInstallHandler()
-        return true
     }
     
-    func feedURLString(for updater: SPUUpdater) -> String? {
+    func feedURLString(for updater: SUUpdater) -> String? {
         return self.path ?? ""
     }
 }
