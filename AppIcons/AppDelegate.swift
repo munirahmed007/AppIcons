@@ -7,26 +7,39 @@
 //
 
 import Cocoa
-import Sparkle
+//import Sparkle
 
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    var spuupdater: SUUpdater!
+    var spuupdater: Sparkle!
     var path: String?
    
+    // Function to instantiate and show the window controller
+    func showNextWindowController() {
+        DispatchQueue.main.async {
+            var psn = ProcessSerialNumber(highLongOfPSN: 0, lowLongOfPSN: UInt32(kCurrentProcess) )
+            TransformProcessType(&psn, ProcessApplicationTransformState(kProcessTransformToForegroundApplication))
+            
+            let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+            let nextWindowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "MainWindow")) as! NSWindowController
+            nextWindowController.showWindow(self)
+        }
+    }
+    
     func intialization() {
         path = ProcessInfo.processInfo.environment["APPCAST_ENDPOINT"]
         if path == nil {
-            var psn = ProcessSerialNumber(highLongOfPSN: 0, lowLongOfPSN: UInt32(kCurrentProcess) )
-            TransformProcessType(&psn, ProcessApplicationTransformState(kProcessTransformToForegroundApplication))
+            showNextWindowController()
+            
         } else {
-            self.spuupdater = SUUpdater(for: Bundle.main)!
-            DispatchQueue.main.async(execute: {
-                self.spuupdater.delegate = self
-                self.spuupdater.checkForUpdatesInBackground()
-            })
+            self.spuupdater = Sparkle()
+            DispatchQueue.main.async {
+               // self.spuupdater.delegate = self
+               // self.spuupdater.checkForUpdatesInBackground()
+                self.spuupdater.upgrade(appcastURLString: self.path!)
+            }
         }
     }
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -42,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-extension AppDelegate: SUUpdaterDelegate {
+/*extension AppDelegate: SUUpdaterDelegate {
     func updater(_ updater: SUUpdater, willInstallUpdateOnQuit item: SUAppcastItem, immediateInstallationBlock immediateInstallHandler: @escaping () -> Void) {
         immediateInstallHandler()
     }
@@ -50,4 +63,4 @@ extension AppDelegate: SUUpdaterDelegate {
     func feedURLString(for updater: SUUpdater) -> String? {
         return self.path ?? ""
     }
-}
+}*/
