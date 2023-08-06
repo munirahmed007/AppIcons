@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		501464252A7F204800FE7FAC /* UpgradeLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501464232A7F204800FE7FAC /* UpgradeLauncher.swift */; };
 		501464262A7F204800FE7FAC /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501464242A7F204800FE7FAC /* Sparkle.swift */; };
-		5014644E2A7F387300FE7FAC /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5014644D2A7F387300FE7FAC /* Zip.framework */; };
-		5014644F2A7F387300FE7FAC /* Zip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5014644D2A7F387300FE7FAC /* Zip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		501464542A7F3EFD00FE7FAC /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 501464532A7F3EFD00FE7FAC /* Zip */; };
 		F40063771F05B3C30019C0FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40063761F05B3C30019C0FE /* AppDelegate.swift */; };
 		F40063791F05B3C30019C0FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40063781F05B3C30019C0FE /* ViewController.swift */; };
 		F400637B1F05B3C30019C0FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F400637A1F05B3C30019C0FE /* Assets.xcassets */; };
@@ -26,7 +25,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5014644F2A7F387300FE7FAC /* Zip.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,7 +34,6 @@
 /* Begin PBXFileReference section */
 		501464232A7F204800FE7FAC /* UpgradeLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeLauncher.swift; sourceTree = "<group>"; };
 		501464242A7F204800FE7FAC /* Sparkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sparkle.swift; sourceTree = "<group>"; };
-		5014644D2A7F387300FE7FAC /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Zip.framework; sourceTree = "<group>"; };
 		F40063731F05B3C30019C0FE /* AppIcons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppIcons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40063761F05B3C30019C0FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F40063781F05B3C30019C0FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -53,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5014644E2A7F387300FE7FAC /* Zip.framework in Frameworks */,
+				501464542A7F3EFD00FE7FAC /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +60,6 @@
 		5014644C2A7F387300FE7FAC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5014644D2A7F387300FE7FAC /* Zip.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,6 +117,7 @@
 			);
 			name = AppIcons;
 			packageProductDependencies = (
+				501464532A7F3EFD00FE7FAC /* Zip */,
 			);
 			productName = AppIcons;
 			productReference = F40063731F05B3C30019C0FE /* AppIcons.app */;
@@ -139,7 +136,7 @@
 					F40063721F05B3C30019C0FE = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W7PMV9XFGM;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -154,6 +151,7 @@
 			);
 			mainGroup = F400636A1F05B3C30019C0FE;
 			packageReferences = (
+				501464522A7F3EFD00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = F40063741F05B3C30019C0FE /* Products */;
 			projectDirPath = "";
@@ -312,7 +310,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -331,7 +330,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = AppIcons/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
 				PRODUCT_BUNDLE_IDENTIFIER = Armonia.AppIcons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -354,7 +357,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = AppIcons/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
 				PRODUCT_BUNDLE_IDENTIFIER = Armonia.AppIcons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -384,6 +391,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		501464522A7F3EFD00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		501464532A7F3EFD00FE7FAC /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 501464522A7F3EFD00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F400636B1F05B3C30019C0FE /* Project object */;
 }
