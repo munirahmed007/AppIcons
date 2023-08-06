@@ -6,6 +6,21 @@
 	objectVersion = 52;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		501464552A7F444300FE7FAC /* build */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 501464562A7F444300FE7FAC /* Build configuration list for PBXAggregateTarget "build" */;
+			buildPhases = (
+				5014645A2A7F445600FE7FAC /* ShellScript */,
+			);
+			dependencies = (
+				5014645C2A7F448B00FE7FAC /* PBXTargetDependency */,
+			);
+			name = build;
+			productName = build;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		501464252A7F204800FE7FAC /* UpgradeLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501464232A7F204800FE7FAC /* UpgradeLauncher.swift */; };
 		501464262A7F204800FE7FAC /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501464242A7F204800FE7FAC /* Sparkle.swift */; };
@@ -17,6 +32,16 @@
 		F402A7911F06EA9A00DCFFD8 /* Contents_mac.json in Resources */ = {isa = PBXBuildFile; fileRef = F402A7901F06EA9A00DCFFD8 /* Contents_mac.json */; };
 		F402A7931F06EAB000DCFFD8 /* Contents_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = F402A7921F06EAB000DCFFD8 /* Contents_ios.json */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5014645B2A7F448B00FE7FAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F400636B1F05B3C30019C0FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F40063721F05B3C30019C0FE;
+			remoteInfo = AppIcons;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		501464502A7F387300FE7FAC /* Embed Frameworks */ = {
@@ -133,6 +158,9 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Armonia;
 				TargetAttributes = {
+					501464552A7F444300FE7FAC = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					F40063721F05B3C30019C0FE = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = W7PMV9XFGM;
@@ -158,6 +186,7 @@
 			projectRoot = "";
 			targets = (
 				F40063721F05B3C30019C0FE /* AppIcons */,
+				501464552A7F444300FE7FAC /* build */,
 			);
 		};
 /* End PBXProject section */
@@ -192,7 +221,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nAPP_SOURCE_PATH=\"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME\"\nDESTINATION_DIR=\"build\"\n\nrm -rf \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n# Create the destination directory if it doesn't exist\nmkdir -p \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n\n# Copy the app to the destination directory\nmv \"${APP_SOURCE_PATH}\" \"${PROJECT_DIR}/${DESTINATION_DIR}/$WRAPPER_NAME\"\n";
+			shellScript = "
+";
+		};
+		5014645A2A7F445600FE7FAC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Type a script or drag a script file from your workspace to insert its path.\nAPP_SOURCE_PATH=\"$BUILT_PRODUCTS_DIR/AppIcons.app\"\nDESTINATION_DIR=\"build\"\n\nrm -rf \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n# Create the destination directory if it doesn't exist\nmkdir -p \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n\n# Copy the app to the destination directory\nmv \"${APP_SOURCE_PATH}\" \"${PROJECT_DIR}/${DESTINATION_DIR}/AppIcons.app\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -210,6 +257,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5014645C2A7F448B00FE7FAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F40063721F05B3C30019C0FE /* AppIcons */;
+			targetProxy = 5014645B2A7F448B00FE7FAC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		F400637C1F05B3C30019C0FE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -222,6 +277,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		501464572A7F444300FE7FAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		501464582A7F444300FE7FAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F40063801F05B3C30019C0FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -372,6 +443,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		501464562A7F444300FE7FAC /* Build configuration list for PBXAggregateTarget "build" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				501464572A7F444300FE7FAC /* Debug */,
+				501464582A7F444300FE7FAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F400636E1F05B3C30019C0FE /* Build configuration list for PBXProject "AppIcons" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
