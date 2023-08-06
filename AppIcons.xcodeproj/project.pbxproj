@@ -87,6 +87,7 @@
 				F400636F1F05B3C30019C0FE /* Sources */,
 				F40063701F05B3C30019C0FE /* Frameworks */,
 				F40063711F05B3C30019C0FE /* Resources */,
+				5014642B2A7F32D100FE7FAC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -152,6 +153,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5014642B2A7F32D100FE7FAC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nAPP_SOURCE_PATH=\"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME\"\nDESTINATION_DIR=\"build\"\n\nrm -rf \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n# Create the destination directory if it doesn't exist\nmkdir -p \"${PROJECT_DIR}/${DESTINATION_DIR}\"\n\n# Copy the app to the destination directory\nditto \"${APP_SOURCE_PATH}\" \"${PROJECT_DIR}/${DESTINATION_DIR}/$WRAPPER_NAME\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F400636F1F05B3C30019C0FE /* Sources */ = {

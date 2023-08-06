@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import Zip
 import AppKit
+import Zip
+
 class UpdateLauncher {
     static let shared = UpdateLauncher()
     
