@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		501464212A7F203900FE7FAC /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 501464202A7F203900FE7FAC /* Zip */; };
 		501464252A7F204800FE7FAC /* UpgradeLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501464232A7F204800FE7FAC /* UpgradeLauncher.swift */; };
 		501464262A7F204800FE7FAC /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501464242A7F204800FE7FAC /* Sparkle.swift */; };
+		5014644A2A7F371C00FE7FAC /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 501464492A7F371C00FE7FAC /* Zip */; };
 		F40063771F05B3C30019C0FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40063761F05B3C30019C0FE /* AppDelegate.swift */; };
 		F40063791F05B3C30019C0FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40063781F05B3C30019C0FE /* ViewController.swift */; };
 		F400637B1F05B3C30019C0FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F400637A1F05B3C30019C0FE /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501464212A7F203900FE7FAC /* Zip in Frameworks */,
+				5014644A2A7F371C00FE7FAC /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +95,7 @@
 			);
 			name = AppIcons;
 			packageProductDependencies = (
-				501464202A7F203900FE7FAC /* Zip */,
+				501464492A7F371C00FE7FAC /* Zip */,
 			);
 			productName = AppIcons;
 			productReference = F40063731F05B3C30019C0FE /* AppIcons.app */;
@@ -129,7 +129,7 @@
 			);
 			mainGroup = F400636A1F05B3C30019C0FE;
 			packageReferences = (
-				5014641F2A7F203900FE7FAC /* XCRemoteSwiftPackageReference "Zip" */,
+				501464482A7F371C00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = F40063741F05B3C30019C0FE /* Products */;
 			projectDirPath = "";
@@ -361,20 +361,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5014641F2A7F203900FE7FAC /* XCRemoteSwiftPackageReference "Zip" */ = {
+		501464482A7F371C00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			repositoryURL = "https://github.com/munirahmed007/Zip.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.2;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		501464202A7F203900FE7FAC /* Zip */ = {
+		501464492A7F371C00FE7FAC /* Zip */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5014641F2A7F203900FE7FAC /* XCRemoteSwiftPackageReference "Zip" */;
+			package = 501464482A7F371C00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */;
 			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
