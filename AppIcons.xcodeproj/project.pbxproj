@@ -24,7 +24,7 @@
 /* Begin PBXBuildFile section */
 		501464252A7F204800FE7FAC /* UpgradeLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501464232A7F204800FE7FAC /* UpgradeLauncher.swift */; };
 		501464262A7F204800FE7FAC /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501464242A7F204800FE7FAC /* Sparkle.swift */; };
-		501464542A7F3EFD00FE7FAC /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 501464532A7F3EFD00FE7FAC /* Zip */; };
+		507110872A8568AA008994A9 /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 507110862A8568AA008994A9 /* ZipArchive */; };
 		F40063771F05B3C30019C0FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40063761F05B3C30019C0FE /* AppDelegate.swift */; };
 		F40063791F05B3C30019C0FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40063781F05B3C30019C0FE /* ViewController.swift */; };
 		F400637B1F05B3C30019C0FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F400637A1F05B3C30019C0FE /* Assets.xcassets */; };
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501464542A7F3EFD00FE7FAC /* Zip in Frameworks */,
+				507110872A8568AA008994A9 /* ZipArchive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +142,7 @@
 			);
 			name = AppIcons;
 			packageProductDependencies = (
-				501464532A7F3EFD00FE7FAC /* Zip */,
+				507110862A8568AA008994A9 /* ZipArchive */,
 			);
 			productName = AppIcons;
 			productReference = F40063731F05B3C30019C0FE /* AppIcons.app */;
@@ -179,7 +179,7 @@
 			);
 			mainGroup = F400636A1F05B3C30019C0FE;
 			packageReferences = (
-				501464522A7F3EFD00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */,
+				507110852A8568AA008994A9 /* XCRemoteSwiftPackageReference "ZipArchive" */,
 			);
 			productRefGroup = F40063741F05B3C30019C0FE /* Products */;
 			projectDirPath = "";
@@ -405,7 +405,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
 				PRODUCT_BUNDLE_IDENTIFIER = Armonia.AppIcons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -432,7 +432,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
 				PRODUCT_BUNDLE_IDENTIFIER = Armonia.AppIcons;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -473,21 +473,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		501464522A7F3EFD00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */ = {
+		507110852A8568AA008994A9 /* XCRemoteSwiftPackageReference "ZipArchive" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marmelroy/Zip";
+			repositoryURL = "https://github.com/ZipArchive/ZipArchive.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.2;
+				kind = exactVersion;
+				version = 2.4.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		501464532A7F3EFD00FE7FAC /* Zip */ = {
+		507110862A8568AA008994A9 /* ZipArchive */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 501464522A7F3EFD00FE7FAC /* XCRemoteSwiftPackageReference "Zip" */;
-			productName = Zip;
+			package = 507110852A8568AA008994A9 /* XCRemoteSwiftPackageReference "ZipArchive" */;
+			productName = ZipArchive;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

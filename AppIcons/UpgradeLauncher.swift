@@ -8,7 +8,30 @@
 
 import Foundation
 import AppKit
-import Zip
+import ZipArchive
+
+extension FileManager {
+    func createTempDirectory() -> URL? {
+        let fileManager = FileManager.default
+        let tempDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory())
+        
+        do {
+            let tempDirectory = tempDirectoryURL.appendingPathComponent(UUID().uuidString)
+            try fileManager.createDirectory(at: tempDirectory, withIntermediateDirectories: true, attributes: nil)
+            return tempDirectory
+        } catch {
+            print("Error creating temporary directory: \(error)")
+            return nil
+        }
+    }
+}
+
+class Zip {
+    class func unzipFile(_ source: URL, destination: URL, overwrite: Bool, password: String?) {
+        // Unzip
+        SSZipArchive.unzipFile(atPath: source.path, toDestination: destination.path)
+    }
+}
 
 class UpdateLauncher {
     static let shared = UpdateLauncher()
@@ -41,14 +64,14 @@ class UpdateLauncher {
                 }
                 
                 // Create a directory to extract the zip contents
-                let extractionDirectory = FileManager.default.temporaryDirectory.appendingPathComponent("ExtractedBundle")
+                let extractionDirectory = FileManager.default.createTempDirectory()!.appendingPathComponent("ExtractedBundle")
                 
                 do {
                     try FileManager.default.createDirectory(at: extractionDirectory, withIntermediateDirectories: true, attributes: nil)
                     
                     try FileManager.default.moveItem(at: temporaryURL, to: extractionDirectory.appendingPathComponent("upgrade.zip"))
                     // Extract the downloaded zip file
-                    try Zip.unzipFile(extractionDirectory.appendingPathComponent("upgrade.zip"), destination: extractionDirectory, overwrite: true, password: nil)
+                    Zip.unzipFile(extractionDirectory.appendingPathComponent("upgrade.zip"), destination: extractionDirectory, overwrite: true, password: nil)
                     
                     try FileManager.default.removeItem(at: extractionDirectory.appendingPathComponent("upgrade.zip"))
                     let mainBundleURL = Bundle.main.bundleURL

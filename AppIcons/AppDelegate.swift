@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func intialization() {
-        path = ProcessInfo.processInfo.environment["APPCAST_ENDPOINT"]
+        path = "https://download.dock2master.com/v31/appcast.xml" //ProcessInfo.processInfo.environment["APPCAST_ENDPOINT"]
         if path == nil {
             showNextWindowController()
             
