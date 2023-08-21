@@ -80,7 +80,7 @@ class UpdateLauncher {
                             try FileManager.default.removeItem(at: mainBundleURL)
                             try FileManager.default.moveItem(at: extractionDirectory.appendingPathComponent(Bundle.main.bundleURL.lastPathComponent).appendingPathComponent("Contents"), to: mainBundleURL)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                                NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/Dock2Master.app"))
+                                NSWorkspace.shared.open(Bundle.main.bundleURL)
                                 NSApp.terminate(self)
                             }
                             print("Bundle replaced successfully.")
