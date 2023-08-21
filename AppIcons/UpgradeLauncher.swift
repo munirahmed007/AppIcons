@@ -74,13 +74,13 @@ class UpdateLauncher {
                     Zip.unzipFile(extractionDirectory.appendingPathComponent("upgrade.zip"), destination: extractionDirectory, overwrite: true, password: nil)
                     
                     try FileManager.default.removeItem(at: extractionDirectory.appendingPathComponent("upgrade.zip"))
-                    let mainBundleURL = Bundle.main.bundleURL
+                    let mainBundleURL = Bundle.main.bundleURL.appendingPathComponent("Contents")
                         // Replace the existing bundle with the extracted bundle
                         do {
                             try FileManager.default.removeItem(at: mainBundleURL)
-                            try FileManager.default.moveItem(at: extractionDirectory.appendingPathComponent(mainBundleURL.lastPathComponent), to: mainBundleURL)
+                            try FileManager.default.moveItem(at: extractionDirectory.appendingPathComponent(Bundle.main.bundleURL.lastPathComponent).appendingPathComponent("Contents"), to: mainBundleURL)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                                NSWorkspace.shared.open(mainBundleURL)
+                                NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/Dock2Master.app"))
                                 NSApp.terminate(self)
                             }
                             print("Bundle replaced successfully.")
