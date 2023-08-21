@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-class Sparkle {
+class Sparkle: NSObject {
     
     func showNextWindow() {
         DispatchQueue.main.async {
@@ -23,10 +23,9 @@ class Sparkle {
         if let appcastURL = URL(string: appcastURLString) {
             // Create a URLSession configuration
             let configuration = URLSessionConfiguration.default
-            
-            // Create a URLSession instance
-            let session = URLSession(configuration: configuration)
-            
+             
+            let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+                
             // Create a data task to fetch the XML
             let task = session.dataTask(with: appcastURL) { (data, response, error) in
              
@@ -61,6 +60,22 @@ class Sparkle {
             showNextWindow()
             print("Invalid URL.")
         }
+    }
+}
+
+extension Sparkle: URLSessionDelegate {
+   
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                    // Bypass certificate validation by trusting the server's certificate.
+                    if let serverTrust = challenge.protectionSpace.serverTrust {
+                        let credential = URLCredential(trust: serverTrust)
+                        completionHandler(.useCredential, credential)
+                    }
+                } else {
+                    // Handle other authentication methods.
+                    completionHandler(.performDefaultHandling, nil)
+                }
     }
 }
 

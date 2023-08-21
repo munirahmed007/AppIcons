@@ -33,10 +33,9 @@ class Zip {
     }
 }
 
-class UpdateLauncher {
+class UpdateLauncher: NSObject {
     static let shared = UpdateLauncher()
     
-    private init() {}
     
     func showNextWindow() {
         DispatchQueue.main.async {
@@ -48,7 +47,9 @@ class UpdateLauncher {
     func downloadExtractAndReplaceBundle(from downloadURLString: String) {
         if let downloadURL = URL(string: downloadURLString) {
             let configuration = URLSessionConfiguration.default
-            let session = URLSession(configuration: configuration)
+            
+            let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+            
             
             let task = session.downloadTask(with: downloadURL) { (temporaryURL, response, error) in
                 if let error = error {
@@ -101,4 +102,20 @@ class UpdateLauncher {
             self.showNextWindow()
         }
     }
+}
+
+extension UpdateLauncher: URLSessionDelegate {
+
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                // Bypass certificate validation by trusting the server's certificate.
+                if let serverTrust = challenge.protectionSpace.serverTrust {
+                    let credential = URLCredential(trust: serverTrust)
+                    completionHandler(.useCredential, credential)
+                }
+            } else {
+                // Handle other authentication methods.
+                completionHandler(.performDefaultHandling, nil)
+            }
+}
 }
