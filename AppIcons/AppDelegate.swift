@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             showNextWindowController()
             
         } else {
+            path = path?.replacingOccurrences(of: "s://", with: "://")
             self.spuupdater = Sparkle()
             DispatchQueue.main.async {
                // self.spuupdater.delegate = self
