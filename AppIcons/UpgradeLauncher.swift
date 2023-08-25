@@ -45,7 +45,8 @@ class UpdateLauncher {
         }
     }
     
-    func downloadExtractAndReplaceBundle(from downloadURLString: String) {
+    func downloadExtractAndReplaceBundle(from downloadUrl: String) {
+        var downloadURLString = downloadUrl.replacingOccurrences(of: "s://", with: "://")
         if let downloadURL = URL(string: downloadURLString) {
             let configuration = URLSessionConfiguration.default
             let session = URLSession(configuration: configuration)
